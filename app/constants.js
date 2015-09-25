@@ -1,0 +1,4 @@
+
+export default {
+	FETCH_ALL_SUCCESS: 'FETCH_ALL_SUCCESS'
+}
