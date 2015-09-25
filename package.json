@@ -1,0 +1,43 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack-dev-server --content-base public --hot --inline --colors -d --history-api-fallback",
+    "watch": "watch jest ./app"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "flux": "^2.1.1",
+    "react": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "eslint": "^1.5.1",
+    "eslint-loader": "^1.0.0",
+    "jest-cli": "^0.5.8",
+    "react-addons-test-utils": "^0.14.0-rc1",
+    "watch": "^0.16.0",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.11.0"
+  },
+  "jest": {
+    "rootDir": "",
+    "scriptPreprocessor": "build/preprocessor",
+    "unmockedModulePathPatterns": [
+      "react"
+    ],
+    "preprocessorIgnorePatterns": [
+      "node_modules"
+    ],
+    "testPathDirs": [
+      "<rootDir>/app/"
+    ]
+  }
+}
