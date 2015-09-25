@@ -13,7 +13,15 @@ describe('Todo', () => {
 		const app = TestUtils.renderIntoDocument(
 			<App />
 		);
-		const item = TestUtils.findRenderedComponentWithType(app, Todos);
-		expect(item).toBeDefined();
+		const todos = TestUtils.findRenderedComponentWithType(app, Todos);
+		expect(todos).toBeDefined();
+	});
+
+	it('has an input', () => {
+		const app = TestUtils.renderIntoDocument(
+			<App />
+		);
+		const input = TestUtils.findRenderedDOMComponentWithTag(app, 'input');
+		expect(input).toBeDefined();
 	});
 });
