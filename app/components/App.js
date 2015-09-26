@@ -7,11 +7,6 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { todos: [] };
-		this.onChange = () => {
-			this.setState({
-				todos: TodoStore.getTodos()
-			});
-		}
 	}
 
 	componentDidMount() {
@@ -26,9 +21,23 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<input />
-				<Todos todos={ this.state.todos }/>
+				<form onSubmit={this.handleAddTodo}>
+					<input ref="newTodoContent" />
+					<button type="submit" className="add-todo" />
+				</form>
+				<Todos todos={ this.state.todos } />
 			</div>
 		);
+	}
+
+	onChange = () => {
+		this.setState({
+			todos: TodoStore.getTodos()
+		});
+	}
+
+	handleAddTodo = (e) => {
+		e.preventDefault();
+		TodoActions.add(this.refs.newTodoContent.value);
 	}
 }

@@ -50,13 +50,23 @@ describe('App', () => {
 		expect(items.length).toBe(3);
 	});
 	
-	xit('has Todos', () => {
+	it('has Todos', () => {
 		const todos = TestUtils.findRenderedComponentWithType(app, Todos);
 		expect(todos).toBeDefined();
 	});
 
-	xit('has an input', () => {
+	it('has an input', () => {
 		const input = TestUtils.findRenderedDOMComponentWithTag(app, 'input');
 		expect(input).toBeDefined();
+	});
+
+	it('adds todo', () => {
+		let testContent = 'new todo';
+		const input = TestUtils.findRenderedDOMComponentWithTag(app, 'input');
+		ReactDOM.findDOMNode(input).value = testContent;
+		const form = TestUtils.findRenderedDOMComponentWithTag(app, 'form');
+		TestUtils.Simulate.submit(ReactDOM.findDOMNode(form));
+		
+		expect(TodoActions.add).toBeCalledWith(testContent);
 	});
 });
