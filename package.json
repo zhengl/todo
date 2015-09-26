@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "babel-node ./server.js",
-    "watch": "watch jest ./app"
+    "watch": "watch jest ./app",
+    "webpack-dev-server": "webpack-dev-server --content-base public --hot --inline --colors -d --history-api-fallback"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "babel-core": "^5.8.25",
+    "babel-eslint": "^4.1.3",
     "babel-loader": "^5.3.2",
     "eslint": "^1.5.1",
     "eslint-loader": "^1.0.0",

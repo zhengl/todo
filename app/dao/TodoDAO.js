@@ -6,6 +6,6 @@ export default {
 	fetchAll: () => {
 		axios
 			.get(`${constants.BASE_URL}/todos`)
-			.then((data) => TodoServerActions.handleFetchAllSuccess(data));
+			.then((res) => TodoServerActions.handleFetchAllSuccess(res.data));
 	}
 }

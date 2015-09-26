@@ -10,6 +10,7 @@ const App = require('../App');
 const Todos = require('../Todos');
 const Todo = require('../Todo');
 
+const TodoActions = require('../../actions/TodoActions');
 const TodoStore = require('../../stores/TodoStore');
 
 describe('App', () => {
@@ -23,6 +24,10 @@ describe('App', () => {
 
 	afterEach(() => {
 		ReactDOM.unmountComponentAtNode(node);
+	});
+
+	it('fetches all todos on mount', () => {
+		expect(TodoActions.fetchAll).toBeCalled();
 	});
 
 	it('listens to TodoStore', () => {

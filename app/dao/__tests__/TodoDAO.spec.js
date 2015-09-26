@@ -14,6 +14,6 @@ describe('TodoDAO', () => {
 		request.mockResponse(data);
 		TodoDAO.fetchAll();
 		expect(TodoServerActions.handleFetchAllSuccess).toBeCalled();
-		expect(TodoServerActions.handleFetchAllSuccess.mock.calls[0][0].data).toBe(data);
+		expect(TodoServerActions.handleFetchAllSuccess.mock.calls[0][0]).toBe(data);
 	});
 });

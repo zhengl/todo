@@ -6,8 +6,8 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{ test: /\.js$/, exclude: /node_modules/, loader: 'babel', query: { stage: 0 } }
-			{ test: /\.js$/, exclude: /node_modules/, loader: 'es'}
+			{ test: /\.js$/, exclude: /node_modules/, loader: 'babel', query: { stage: 0 } },
+			{ test: /\.js$/, exclude: /node_modules/, loader: 'eslint'}
 		]
 	}
 };
