@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.6.0",
     "babel": "^5.8.23",
+    "body-parser": "^1.14.0",
     "express": "^4.13.3",
     "flux": "^2.1.1",
     "react": "^0.14.0-rc1",
@@ -26,6 +27,7 @@
     "eslint": "^1.5.1",
     "eslint-loader": "^1.0.0",
     "jest-cli": "^0.5.8",
+    "node-uuid": "^1.4.3",
     "react-addons-test-utils": "^0.14.0-rc1",
     "watch": "^0.16.0",
     "webpack": "^1.12.2",

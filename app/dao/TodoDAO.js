@@ -9,9 +9,9 @@ export default {
 			.then((res) => TodoServerActions.handleFetchAllSuccess(res.data));
 	},
 
-	add: () => {
+	add: (todo) => {
 		axios
-			.post(`${constants.BASE_URL}/todos`)
+			.post(`${constants.BASE_URL}/todos`, { todo: todo })
 			.then((res) => TodoServerActions.handleAddSuccess(res.data));
 	},
 

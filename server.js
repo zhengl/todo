@@ -1,9 +1,21 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 
+import uuid from 'node-uuid';
+
 const database = {
-	todos: ['Item 1', 'Item 2']
+	todos: [
+		{
+			id: uuid.v1(),
+			content: 'Item 1'
+		},
+		{
+			id: uuid.v1(),
+			content: 'Item 2'
+		}
+	]
 }
 
 const REST_PORT = 3000;
@@ -29,6 +41,10 @@ app.listen(APP_PORT, () => {
 
 const restfulServer = express();
 
+restfulServer.use(bodyParser.urlencoded({ extended: false }));
+
+restfulServer.use(bodyParser.json());
+
 restfulServer.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
@@ -36,6 +52,20 @@ restfulServer.use((req, res, next) => {
 });
 
 restfulServer.get('/todos', (req, res) => {
+	res.json(database.todos);
+});
+
+restfulServer.post('/todos', (req, res) => {
+	const newTodo = {
+		id: uuid.v1(),
+		content: req.body.todo
+	};
+	database.todos.push(newTodo);
+	res.json(newTodo);
+});
+
+restfulServer.delete('/todos/:id', (req, res) => {
+	database.todos = database.todos.filter( todo => todo.id != req.params.id );
 	res.json(database.todos);
 });
 
