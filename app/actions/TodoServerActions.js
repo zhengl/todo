@@ -14,5 +14,12 @@ export default {
 			source: constants.ADD_SUCCESS,
 			todo: todo
 		})		
+	},
+
+	handleRemoveSuccess: (todos) => {
+		AppDispatcher.dispatch({
+			source: constants.REMOVE_SUCCESS,
+			todos: todos
+		})
 	}
 }

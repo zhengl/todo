@@ -13,5 +13,11 @@ export default {
 		axios
 			.post(`${constants.BASE_URL}/todos`)
 			.then((res) => TodoServerActions.handleAddSuccess(res.data));
+	},
+
+	remove: (todo) => {
+		axios
+			.delete(`${constants.BASE_URL}/todos/${todo.id}`)
+			.then((res) => TodoServerActions.handleRemoveSuccess(res.data));		
 	}
 }

@@ -9,10 +9,19 @@ const Todo = require('../Todo');
 
 describe('Todos', () => {
 	it('displays a list of Todo', () => {
-		var data = [
-			'Item 1',
-			'Item 2',
-			'Item 3'
+		const data = [
+			{
+				id: '0001',
+				content: 'Item 1'
+			},
+			{
+				id: '0002',
+				content: 'Item 2'
+			},
+			{
+				id: '0003',
+				content: 'Item 3'
+			},
 		];
 		const todos = TestUtils.renderIntoDocument(
 			<Todos todos={data} />

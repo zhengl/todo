@@ -15,9 +15,18 @@ describe('TodoStore', () => {
 		TodoStore.emitChange = jest.genMockFn();
 
 		const data = [
-			'Item 1',
-			'Item 2',
-			'Item 3',
+			{
+				id: '0001',
+				content: 'Item 1'
+			},
+			{
+				id: '0002',
+				content: 'Item 2'
+			},
+			{
+				id: '0003',
+				content: 'Item 3'
+			},
 		];
 
 		dispatch({
@@ -29,11 +38,16 @@ describe('TodoStore', () => {
 		expect(TodoStore.emitChange).toBeCalled();
 	});
 
-	it('sets todos on ADD_SUCCESS', () => {
+	it('adds todos on ADD_SUCCESS', () => {
 		let size = TodoStore.getTodos().length;
 		TodoStore.emitChange = jest.genMockFn();
 
-		const data = 'new item';
+		const data = [
+			{
+				id: '0004',
+				content: 'Item 4'
+			}
+		];
 
 		dispatch({
 			source: constants.ADD_SUCCESS,
@@ -43,5 +57,28 @@ describe('TodoStore', () => {
 		expect(TodoStore.getTodos().length).toBe(size + 1);
 		expect(TodoStore.getTodos().pop()).toBe(data);
 		expect(TodoStore.emitChange).toBeCalled();
-	});	
+	});
+
+	it('sets todos on REMOVE_SUCCESS', () => {
+		TodoStore.emitChange = jest.genMockFn();
+
+		const data = [
+			{
+				id: '0002',
+				content: 'Item 2'
+			},
+			{
+				id: '0003',
+				content: 'Item 3'
+			},
+		];
+
+		dispatch({
+			source: constants.REMOVE_SUCCESS,
+			todos: data
+		});
+
+		expect(TodoStore.getTodos()).toBe(data);
+		expect(TodoStore.emitChange).toBeCalled();
+	});
 });

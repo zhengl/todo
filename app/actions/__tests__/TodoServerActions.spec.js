@@ -25,5 +25,14 @@ describe('TodoServerActions', () => {
 			source: constants.ADD_SUCCESS,
 			todo: data
 		});
+	});
+
+	it('dispatches REMOVE_SUCCESS on handling remove success', () => {
+		const data = [];
+		TodoServerActions.handleRemoveSuccess(data);
+		expect(AppDispatcher.dispatch).toBeCalledWith({
+			source: constants.REMOVE_SUCCESS,
+			todos: data
+		});
 	});	
 });

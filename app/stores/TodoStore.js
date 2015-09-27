@@ -43,7 +43,10 @@ AppDispatcher.register((action) => {
 			break;
 		case constants.ADD_SUCCESS:
 			TodoStore.addTodo(action.todo);
-			break;		
+			break;
+		case constants.REMOVE_SUCCESS:
+			TodoStore.setTodos(action.todos);
+			break;	
 	}
 });
 

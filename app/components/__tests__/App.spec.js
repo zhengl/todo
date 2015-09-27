@@ -38,13 +38,22 @@ describe('App', () => {
 		const calls = TodoStore.addChangeListener.mock.calls;
 		let onChange = calls[calls.length - 1][0];
 		
-		const todos = [
-			'Item 1',
-			'Item 2',
-			'Item 3'
+		const data = [
+			{
+				id: '0001',
+				content: 'Item 1'
+			},
+			{
+				id: '0002',
+				content: 'Item 2'
+			},
+			{
+				id: '0003',
+				content: 'Item 3'
+			},
 		];
 
-		TodoStore.getTodos.mockReturnValue(todos);
+		TodoStore.getTodos.mockReturnValue(data);
 		onChange();
 		const items = TestUtils.scryRenderedComponentsWithType(app, Todo);
 		expect(items.length).toBe(3);

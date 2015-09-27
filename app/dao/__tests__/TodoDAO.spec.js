@@ -7,9 +7,18 @@ const TodoServerActions = require('../../actions/TodoServerActions');
 describe('TodoDAO', () => {
 	it('#fetchAll', () => {
 		const data = [
-			'Item 1',
-			'Item 2',
-			'Item 3',
+			{
+				id: '0001',
+				content: 'Item 1'
+			},
+			{
+				id: '0002',
+				content: 'Item 2'
+			},
+			{
+				id: '0003',
+				content: 'Item 3'
+			},
 		];
 		request.mockResponse(data);
 		TodoDAO.fetchAll();
@@ -24,4 +33,17 @@ describe('TodoDAO', () => {
 		expect(TodoServerActions.handleAddSuccess).toBeCalled();
 		expect(TodoServerActions.handleAddSuccess.mock.calls[0][0]).toBe(data);
 	});
+
+	it('#remove', () => {
+		const mockedResponse = [];
+		const data = {
+			id: '0001',
+			content: 'Item 1'
+		};
+
+		request.mockResponse(mockedResponse);
+		TodoDAO.remove(data);
+		expect(TodoServerActions.handleRemoveSuccess).toBeCalled();
+		expect(TodoServerActions.handleRemoveSuccess.mock.calls[0][0]).toBe(mockedResponse);
+	});	
 });

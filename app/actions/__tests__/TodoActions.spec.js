@@ -10,7 +10,14 @@ describe('TodoActions', () => {
 	});
 
 	it('calls TodoDAO.add on add', () => {
-		TodoActions.add();
-		expect(TodoDAO.add).toBeCalled();
+		let data = 'new item';
+		TodoActions.add(data);
+		expect(TodoDAO.add).toBeCalledWith(data);
+	});
+
+	it('calls TodoDAO.remove on remove', () => {
+		let data = 'new item';
+		TodoActions.remove(data);
+		expect(TodoDAO.remove).toBeCalledWith(data);
 	});
 });

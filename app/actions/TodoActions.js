@@ -2,5 +2,6 @@ import TodoDAO from '../dao/TodoDAO';
 
 export default {
 	fetchAll: () => TodoDAO.fetchAll(),
-	add: () => TodoDAO.add()
+	add: (todo) => TodoDAO.add(todo),
+	remove: (todo) => TodoDAO.remove(todo)
 }

@@ -5,7 +5,7 @@ export default class Todos extends React.Component {
 	render() {
 		return (
 			<ul>
-				{ this.props.todos.map( todo => <Todo key={todo} todo={todo} /> ) }
+				{ this.props.todos.map( todo => <Todo key={todo.id} todo={todo} /> ) }
 			</ul>
 		);
 	}
