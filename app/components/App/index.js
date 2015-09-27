@@ -1,7 +1,7 @@
 import React from 'react';
-import Todos from './Todos';
-import TodoStore from '../stores/TodoStore';
-import TodoActions from '../actions/TodoActions';
+import Todos from '../Todos';
+import TodoStore from '../../stores/TodoStore';
+import TodoActions from '../../actions/TodoActions';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -23,7 +23,7 @@ export default class App extends React.Component {
 			<div>
 				<form onSubmit={this.handleAddTodo}>
 					<input ref="newTodoContent" />
-					<button type="submit" className="add-todo">Add</button>
+					<button type="submit" className="add-todo"></button>
 				</form>
 				<Todos todos={ this.state.todos } />
 			</div>

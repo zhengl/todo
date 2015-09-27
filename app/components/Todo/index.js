@@ -1,5 +1,5 @@
 import React from 'react';
-import TodoActions from '../actions/TodoActions';
+import TodoActions from '../../actions/TodoActions';
 
 export default class Todo extends React.Component {
 	render() {
@@ -7,7 +7,7 @@ export default class Todo extends React.Component {
 		return (
 			<li>
 				{ content }
-				<button onClick={this.handleRemove}>Remove</button>
+				<button onClick={this.handleRemove}></button>
 			</li>
 		);
 	}

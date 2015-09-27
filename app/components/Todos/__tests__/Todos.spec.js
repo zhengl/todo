@@ -1,11 +1,11 @@
-jest.dontMock('../Todos');
-jest.dontMock('../Todo');
+jest.dontMock('../');
+jest.dontMock('../../Todo');
 
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
-const Todos = require('../Todos');
-const Todo = require('../Todo');
+const Todos = require('../');
+const Todo = require('../../Todo');
 
 describe('Todos', () => {
 	it('displays a list of Todo', () => {

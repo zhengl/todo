@@ -1,11 +1,11 @@
-jest.dontMock('../Todo');
+jest.dontMock('../');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-const Todo = require('../Todo');
-const TodoActions = require('../../actions/TodoActions');
+const Todo = require('../');
+const TodoActions = require('../../../actions/TodoActions');
 
 describe('Todo', () => {
 	let data;

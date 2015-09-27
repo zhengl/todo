@@ -1,17 +1,17 @@
-jest.dontMock('../App');
-jest.dontMock('../Todos');
-jest.dontMock('../Todo');
+jest.dontMock('../');
+jest.dontMock('../../Todos');
+jest.dontMock('../../Todo');
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
-const App = require('../App');
-const Todos = require('../Todos');
-const Todo = require('../Todo');
+const App = require('../');
+const Todos = require('../../Todos');
+const Todo = require('../../Todo');
 
-const TodoActions = require('../../actions/TodoActions');
-const TodoStore = require('../../stores/TodoStore');
+const TodoActions = require('../../../actions/TodoActions');
+const TodoStore = require('../../../stores/TodoStore');
 
 describe('App', () => {
 	let app;
