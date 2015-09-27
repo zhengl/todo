@@ -17,4 +17,13 @@ describe('TodoServerActions', () => {
 			todos: data
 		});
 	});
+
+	it('dispatches ADD_SUCCESS on handling add success', () => {
+		const data = 'new item';
+		TodoServerActions.handleAddSuccess(data);
+		expect(AppDispatcher.dispatch).toBeCalledWith({
+			source: constants.ADD_SUCCESS,
+			todo: data
+		});
+	});	
 });

@@ -7,5 +7,12 @@ export default {
 			source: constants.FETCH_ALL_SUCCESS,
 			todos: todos
 		})
+	},
+
+	handleAddSuccess: (todo) => {
+		AppDispatcher.dispatch({
+			source: constants.ADD_SUCCESS,
+			todo: todo
+		})		
 	}
 }

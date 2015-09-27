@@ -29,12 +29,20 @@ class TodoStore {
 		TODOS = todos;
 		this.emitChange();
 	}
+
+	static addTodo(todo) {
+		TODOS.push(todo);
+		this.emitChange();
+	}
 }
 
 AppDispatcher.register((action) => {
 	switch(action.source) {
 		case constants.FETCH_ALL_SUCCESS:
 			TodoStore.setTodos(action.todos);
+			break;
+		case constants.ADD_SUCCESS:
+			TodoStore.addTodo(action.todo);
 			break;		
 	}
 });

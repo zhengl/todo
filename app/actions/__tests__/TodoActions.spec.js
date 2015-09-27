@@ -8,4 +8,9 @@ describe('TodoActions', () => {
 		TodoActions.fetchAll();
 		expect(TodoDAO.fetchAll).toBeCalled();
 	});
+
+	it('calls TodoDAO.add on add', () => {
+		TodoActions.add();
+		expect(TodoDAO.add).toBeCalled();
+	});
 });

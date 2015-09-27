@@ -16,4 +16,12 @@ describe('TodoDAO', () => {
 		expect(TodoServerActions.handleFetchAllSuccess).toBeCalled();
 		expect(TodoServerActions.handleFetchAllSuccess.mock.calls[0][0]).toBe(data);
 	});
+
+	it('#add', () => {
+		const data = 'new item';
+		request.mockResponse(data);
+		TodoDAO.add(data);
+		expect(TodoServerActions.handleAddSuccess).toBeCalled();
+		expect(TodoServerActions.handleAddSuccess.mock.calls[0][0]).toBe(data);
+	});
 });

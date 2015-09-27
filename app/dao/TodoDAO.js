@@ -7,5 +7,11 @@ export default {
 		axios
 			.get(`${constants.BASE_URL}/todos`)
 			.then((res) => TodoServerActions.handleFetchAllSuccess(res.data));
+	},
+
+	add: () => {
+		axios
+			.post(`${constants.BASE_URL}/todos`)
+			.then((res) => TodoServerActions.handleAddSuccess(res.data));
 	}
 }

@@ -28,4 +28,20 @@ describe('TodoStore', () => {
 		expect(TodoStore.getTodos()).toBe(data);
 		expect(TodoStore.emitChange).toBeCalled();
 	});
+
+	it('sets todos on ADD_SUCCESS', () => {
+		let size = TodoStore.getTodos().length;
+		TodoStore.emitChange = jest.genMockFn();
+
+		const data = 'new item';
+
+		dispatch({
+			source: constants.ADD_SUCCESS,
+			todo: data
+		});
+
+		expect(TodoStore.getTodos().length).toBe(size + 1);
+		expect(TodoStore.getTodos().pop()).toBe(data);
+		expect(TodoStore.emitChange).toBeCalled();
+	});	
 });
