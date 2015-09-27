@@ -23,7 +23,7 @@ export default class App extends React.Component {
 			<div>
 				<form onSubmit={this.handleAddTodo}>
 					<input ref="newTodoContent" />
-					<button type="submit" className="add-todo" />
+					<button type="submit" className="add-todo">Add</button>
 				</form>
 				<Todos todos={ this.state.todos } />
 			</div>

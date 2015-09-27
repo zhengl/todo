@@ -7,7 +7,7 @@ export default class Todo extends React.Component {
 		return (
 			<li>
 				{ content }
-				<button onClick={this.handleRemove} />
+				<button onClick={this.handleRemove}>Remove</button>
 			</li>
 		);
 	}
