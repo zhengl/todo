@@ -2,13 +2,36 @@
 	display: block;
 	position: relative;
 	height: 56px;
+	overflow: hidden;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-	padding: 16px;
+	opacity: 1;
+	transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.todo-enter {
+	opacity: .01;
+	height: 0px;
+}
+
+.todo-enter.todo-enter-active {
+	opacity: 1;
+	height: 56px;
+}
+
+.todo-leave {
+	opacity: 1;
+	height: 56px;
+}
+
+.todo-leave.todo-leave-active {
+	opacity: .01;
+	height: 0px;
 }
 
 .todo__content {
 	font-size: 16px;
-	line-height: 24px;
+	line-height: 56px;
+	padding: 0 16px;
 }
 
 .todo__remove {
@@ -29,3 +52,4 @@
 	color: #757575;
 	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);	
 }
+
