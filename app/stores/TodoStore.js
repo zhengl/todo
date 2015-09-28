@@ -31,7 +31,7 @@ class TodoStore {
 	}
 
 	static addTodo(todo) {
-		TODOS.push(todo);
+		TODOS.unshift(todo);
 		this.emitChange();
 	}
 }

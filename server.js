@@ -61,7 +61,7 @@ restfulServer.post('/todos', (req, res) => {
 		id: uuid.v1(),
 		content: req.body.todo
 	};
-	database.todos.push(newTodo);
+	database.todos.unshift(newTodo);
 	res.json(newTodo);
 });
 

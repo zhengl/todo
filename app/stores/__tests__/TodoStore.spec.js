@@ -38,7 +38,7 @@ describe('TodoStore', () => {
 		expect(TodoStore.emitChange).toBeCalled();
 	});
 
-	it('adds todos on ADD_SUCCESS', () => {
+	it('adds todo to first on ADD_SUCCESS', () => {
 		let size = TodoStore.getTodos().length;
 		TodoStore.emitChange = jest.genMockFn();
 
@@ -55,7 +55,7 @@ describe('TodoStore', () => {
 		});
 
 		expect(TodoStore.getTodos().length).toBe(size + 1);
-		expect(TodoStore.getTodos().pop()).toBe(data);
+		expect(TodoStore.getTodos()[0]).toBe(data);
 		expect(TodoStore.emitChange).toBeCalled();
 	});
 

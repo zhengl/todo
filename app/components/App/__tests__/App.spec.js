@@ -18,6 +18,7 @@ describe('App', () => {
 	let node;
 	let form;
 	let input;
+	let addTodoButton;
 
 	beforeEach(() => {
 		TodoActions.add.mockClear();
@@ -26,7 +27,7 @@ describe('App', () => {
 		node = document.createElement('div');
 		app = ReactDOM.render(<App />, node);
 
-		let inputComponent = TestUtils.findRenderedDOMComponentWithClass(app, 'toolbar__new-todo');
+		let inputComponent = TestUtils.findRenderedDOMComponentWithClass(app, 'main__new-todo-container__input');
 		input = ReactDOM.findDOMNode(inputComponent);
 
 		let formComponent = TestUtils.findRenderedDOMComponentWithTag(app, 'form');
@@ -86,16 +87,8 @@ describe('App', () => {
 		expect(input.value).toBe('');
 	});
 
-	it('adds todo on clicking add-todo button', () => {
-		let testContent = 'new content';
-		input.value = testContent;
-		const addTodoButtonComponent = TestUtils.findRenderedDOMComponentWithClass(app, 'main__add-todo');
-		TestUtils.Simulate.click(ReactDOM.findDOMNode(addTodoButtonComponent));
-		expect(TodoActions.add).toBeCalledWith(testContent);
-	});
-
 	it('should not add todo when input is empty', () => {
-		submitFormWithContent('')
+		submitFormWithContent('');
 		expect(TodoActions.add).not.toBeCalled();
 	});
 });

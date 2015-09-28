@@ -5,11 +5,16 @@ import TodoActions from '../../actions/TodoActions';
 
 import './styles.css';
 import addIcon from 'material-design-icons/content/svg/production/ic_add_24px.svg';
+import confirmIcon from 'material-design-icons/action/svg/production/ic_done_24px.svg';
+import resetIcon from 'material-design-icons/content/svg/production/ic_clear_24px.svg';
 
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { todos: [] };
+		this.state = {
+			todos: [],
+			isAddingTodo: false
+		};
 	}
 
 	componentDidMount() {
@@ -22,16 +27,28 @@ export default class App extends React.Component {
 	}
 
 	render() {
+		let containerClass = 'main__new-todo-container';
+		if(this.state.isAddingTodo) {
+			containerClass += ' ' + containerClass + '_open';
+		}
+
+		let addTodoButtonClass = 'main__add-todo';
+		if(this.state.isAddingTodo) {
+			addTodoButtonClass += ' ' + addTodoButtonClass + '_rotated';
+		}
+
 		return (
 			<div>
 				<header className="toolbar">
-					<form onSubmit={this.handleAddTodo}>
-						<input className="toolbar__new-todo" ref="newTodoContent" />
-					</form>
+					<span className="toolbar__title">Todo List</span>
 				</header>
 				<main className="main">
+					<form className={containerClass} onSubmit={this.handleAddTodo}>
+						<input className="main__new-todo-container__input" ref="newTodoContent" placeholder="New Todo" />
+						<button className="main__new-todo-container__confirm" type="submit" dangerouslySetInnerHTML={{__html: confirmIcon}}></button>
+					</form>
 					<Todos todos={ this.state.todos } />
-					<button className="main__add-todo" onClick={this.handleAddTodo} dangerouslySetInnerHTML={{__html: addIcon}}></button>
+					<button className={addTodoButtonClass} onClick={this.toggleMode} dangerouslySetInnerHTML={{__html: addIcon}}></button>
 				</main>
 			</div>
 		);
@@ -39,7 +56,8 @@ export default class App extends React.Component {
 
 	onChange = () => {
 		this.setState({
-			todos: TodoStore.getTodos()
+			todos: TodoStore.getTodos(),
+			isAddingTodo: false
 		});
 	}
 
@@ -50,5 +68,11 @@ export default class App extends React.Component {
 			TodoActions.add(input.value);
 			input.value = '';
 		}
+	}
+
+	toggleMode = () => {
+		this.setState({
+			isAddingTodo: !this.state.isAddingTodo
+		});		
 	}
 }
