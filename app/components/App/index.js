@@ -43,6 +43,7 @@ export default class App extends React.Component {
 					<span className="toolbar__title">Todo List</span>
 				</header>
 				<main className="main">
+					<span className="main__title">Todo List</span>
 					<form className={containerClass} onSubmit={this.handleAddTodo}>
 						<input className="main__new-todo-container__input" ref="newTodoContent" placeholder="New Todo" />
 						<button className="main__new-todo-container__confirm" type="submit" dangerouslySetInnerHTML={{__html: confirmIcon}}></button>
