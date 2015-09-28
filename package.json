@@ -1,7 +1,7 @@
 {
   "name": "todo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A showcase of building Todo with React, Flux, Jest, Webpack Material Design, etc.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -9,7 +9,8 @@
     "watch": "watch jest ./app",
     "webpack-dev-server": "webpack-dev-server --content-base public --hot --inline --colors -d --history-api-fallback"
   },
-  "author": "",
+  "author": "Zheng Li",
+  "repository": "https://github.com/zhengl/todo.git",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.6.0",
