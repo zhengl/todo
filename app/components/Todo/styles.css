@@ -1,0 +1,31 @@
+.todo {
+	display: block;
+	position: relative;
+	height: 56px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+	padding: 16px;
+}
+
+.todo__content {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.todo__remove {
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	width: 24px;
+	height: 24px;
+
+	background-color: transparent;
+	border: none;
+	outline: 0;
+	width: 56px;
+	height: 56px;
+	padding: 16px;
+	fill: #757575;
+	color: #757575;
+	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);	
+}

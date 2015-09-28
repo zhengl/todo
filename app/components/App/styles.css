@@ -1,0 +1,33 @@
+.toolbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 56px;
+	padding: 4px;
+	background-color: #FFEB3B;
+	transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+}
+
+.main {
+	padding-top: 56px;
+}
+
+.main__add-todo {
+	position: fixed;
+	right: 16px;
+	bottom: 16px;
+	background-color: #00BCD4;
+
+	border: none;
+	border-radius: 50%;
+	outline: 0;
+	width: 56px;
+	height: 56px;
+	padding: 16px;
+    box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12), 0 1px 1px 0 rgba(0,0,0,.24);
+	fill: white;
+	color: white;
+	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}

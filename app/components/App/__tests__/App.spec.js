@@ -16,10 +16,21 @@ const TodoStore = require('../../../stores/TodoStore');
 describe('App', () => {
 	let app;
 	let node;
+	let form;
+	let input;
 
 	beforeEach(() => {
+		TodoActions.add.mockClear();
+		TodoStore.addChangeListener.mockClear();
+
 		node = document.createElement('div');
 		app = ReactDOM.render(<App />, node);
+
+		let inputComponent = TestUtils.findRenderedDOMComponentWithClass(app, 'toolbar__new-todo');
+		input = ReactDOM.findDOMNode(inputComponent);
+
+		let formComponent = TestUtils.findRenderedDOMComponentWithTag(app, 'form');
+		form = ReactDOM.findDOMNode(formComponent);
 	});
 
 	afterEach(() => {
@@ -35,8 +46,7 @@ describe('App', () => {
 	});
 
 	it('list todos on change', () => {
-		const calls = TodoStore.addChangeListener.mock.calls;
-		let onChange = calls[calls.length - 1][0];
+		const onChange = TodoStore.addChangeListener.mock.calls[0][0];
 		
 		const data = [
 			{
@@ -64,18 +74,28 @@ describe('App', () => {
 		expect(todos).toBeDefined();
 	});
 
-	it('has an input', () => {
-		const input = TestUtils.findRenderedDOMComponentWithTag(app, 'input');
-		expect(input).toBeDefined();
+	function submitFormWithContent(content) {
+		input.value = content;
+		TestUtils.Simulate.submit(form);
+	}
+
+	it('adds todo on submitting the form', () => {
+		let testContent = 'new content';
+		submitFormWithContent(testContent)
+		expect(TodoActions.add).toBeCalledWith(testContent);
+		expect(input.value).toBe('');
 	});
 
-	it('adds todo', () => {
-		let testContent = 'new todo';
-		const input = TestUtils.findRenderedDOMComponentWithTag(app, 'input');
-		ReactDOM.findDOMNode(input).value = testContent;
-		const form = TestUtils.findRenderedDOMComponentWithTag(app, 'form');
-		TestUtils.Simulate.submit(ReactDOM.findDOMNode(form));
-		
+	it('adds todo on clicking add-todo button', () => {
+		let testContent = 'new content';
+		input.value = testContent;
+		const addTodoButtonComponent = TestUtils.findRenderedDOMComponentWithClass(app, 'main__add-todo');
+		TestUtils.Simulate.click(ReactDOM.findDOMNode(addTodoButtonComponent));
 		expect(TodoActions.add).toBeCalledWith(testContent);
+	});
+
+	it('should not add todo when input is empty', () => {
+		submitFormWithContent('')
+		expect(TodoActions.add).not.toBeCalled();
 	});
 });

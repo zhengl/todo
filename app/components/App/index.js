@@ -3,6 +3,9 @@ import Todos from '../Todos';
 import TodoStore from '../../stores/TodoStore';
 import TodoActions from '../../actions/TodoActions';
 
+import './styles.css';
+import addIcon from 'material-design-icons/content/svg/production/ic_add_24px.svg';
+
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -21,11 +24,15 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<form onSubmit={this.handleAddTodo}>
-					<input ref="newTodoContent" />
-					<button type="submit" className="add-todo"></button>
-				</form>
-				<Todos todos={ this.state.todos } />
+				<header className="toolbar">
+					<form onSubmit={this.handleAddTodo}>
+						<input className="toolbar__new-todo" ref="newTodoContent" />
+					</form>
+				</header>
+				<main className="main">
+					<Todos todos={ this.state.todos } />
+					<button className="main__add-todo" onClick={this.handleAddTodo} dangerouslySetInnerHTML={{__html: addIcon}}></button>
+				</main>
 			</div>
 		);
 	}
@@ -38,6 +45,10 @@ export default class App extends React.Component {
 
 	handleAddTodo = (e) => {
 		e.preventDefault();
-		TodoActions.add(this.refs.newTodoContent.value);
+		const input = this.refs.newTodoContent;
+		if(input.value !== '') {
+			TodoActions.add(input.value);
+			input.value = '';
+		}
 	}
 }

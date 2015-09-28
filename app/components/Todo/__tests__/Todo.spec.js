@@ -23,11 +23,11 @@ describe('Todo', () => {
 
 	it('displays the content', () => {
 		const item = TestUtils.findRenderedDOMComponentWithTag(todo, 'li');
-		expect(ReactDOM.findDOMNode(item).textContent).toBe(data.content);
+		expect(ReactDOM.findDOMNode(item).textContent).toMatch(data.content);
 	});
 
 	it('calls TodoActions.delete the on clicking remove-todo button', () => {
-		const removeTodoButton = TestUtils.findRenderedDOMComponentWithTag(todo, 'button');
+		const removeTodoButton = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__remove');
 		TestUtils.Simulate.click(ReactDOM.findDOMNode(removeTodoButton));
 		expect(TodoActions.remove).toBeCalledWith(data);
 	});
