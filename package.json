@@ -7,7 +7,8 @@
     "test": "jest",
     "start": "babel-node ./server.js",
     "watch": "watch jest ./app",
-    "webpack-dev-server": "webpack-dev-server --content-base public --hot --inline --colors -d --history-api-fallback"
+    "webpack-dev-server": "webpack-dev-server --content-base public --hot --inline --colors -d --history-api-fallback",
+    "build": "webpack -p"
   },
   "author": "Zheng Li",
   "repository": "https://github.com/zhengl/todo.git",
