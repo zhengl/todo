@@ -31,4 +31,33 @@ describe('Todo', () => {
 		TestUtils.Simulate.click(ReactDOM.findDOMNode(removeTodoButton));
 		expect(TodoActions.remove).toBeCalledWith(data);
 	});
+
+	it('shows edit input on double click', () => {
+		const todoEdits = TestUtils.scryRenderedDOMComponentsWithClass(todo, 'todo__edit');
+		expect(todoEdits.length).toBe(0);
+		
+		TestUtils.Simulate.doubleClick(ReactDOM.findDOMNode(todo));
+		TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit');
+		const inputComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit__input');
+		expect(ReactDOM.findDOMNode(inputComponent).value).toMatch(data.content);
+		TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit__confirm');
+	});
+
+	it('changes content on submit and hides edit input', () => {
+		TestUtils.Simulate.doubleClick(ReactDOM.findDOMNode(todo));
+
+		let newContent = 'new content';
+		const inputComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit__input');
+		ReactDOM.findDOMNode(inputComponent).value = newContent;
+		
+		const formComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit');
+		TestUtils.Simulate.submit(ReactDOM.findDOMNode(formComponent));
+		expect(TodoActions.change).toBeCalledWith({
+			id: data.id,
+			content: newContent
+		});
+
+		const todoEdits = TestUtils.scryRenderedDOMComponentsWithClass(todo, 'todo__edit');
+		expect(todoEdits.length).toBe(0);
+	});
 });

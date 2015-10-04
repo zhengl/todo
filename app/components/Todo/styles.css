@@ -53,3 +53,46 @@
 	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);	
 }
 
+.todo__edit {
+	padding: 16px 56px 16px 16px;
+}
+
+.todo__edit__input {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+	border-radius: 0;
+	outline: none;
+	height: 24px;
+	width: 100%;
+
+	font-size: 16px;
+	padding: 0;
+	box-shadow: none;
+	transition: all .4s;
+}
+
+.todo__edit__input:focus {
+	border-bottom: 1px solid #00BCD4;
+	box-shadow: 0 1px 0 0 #00BCD4;
+}
+
+.todo__edit__confirm {
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	width: 24px;
+	height: 24px;
+
+	background-color: transparent;
+	border: none;
+	outline: 0;
+	width: 56px;
+	height: 56px;
+	padding: 16px;
+	fill: #00BCD4;
+	color: #00BCD4;
+	transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);	
+}
+

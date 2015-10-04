@@ -6,7 +6,7 @@ export default {
 		AppDispatcher.dispatch({
 			source: constants.FETCH_ALL_SUCCESS,
 			todos: todos
-		})
+		});
 	},
 
 	handleAddSuccess: (todo) => {
@@ -20,6 +20,13 @@ export default {
 		AppDispatcher.dispatch({
 			source: constants.REMOVE_SUCCESS,
 			todos: todos
-		})
+		});
+	},
+
+	handleChangeSuccess: (todo) => {
+		AppDispatcher.dispatch({
+			source: constants.CHANGE_SUCCESS,
+			todo: todo
+		});
 	}
 }

@@ -34,6 +34,12 @@ class TodoStore {
 		TODOS.unshift(todo);
 		this.emitChange();
 	}
+
+	static updateTodo(updatedTodo) {
+		TODOS.find(
+			todo => todo.id == updatedTodo.id
+		).content = updatedTodo.content;
+	}
 }
 
 AppDispatcher.register((action) => {
@@ -46,6 +52,9 @@ AppDispatcher.register((action) => {
 			break;
 		case constants.REMOVE_SUCCESS:
 			TodoStore.setTodos(action.todos);
+			break;
+		case constants.CHANGE_SUCCESS:
+			TodoStore.updateTodo(action.todo);
 			break;	
 	}
 });

@@ -34,5 +34,17 @@ describe('TodoServerActions', () => {
 			source: constants.REMOVE_SUCCESS,
 			todos: data
 		});
+	});
+
+	it('dispatches CHANGE_SUCCESS on handling change success', () => {
+		const data = {
+			id: '0001',
+			content: 'new content'
+		};
+		TodoServerActions.handleChangeSuccess(data);
+		expect(AppDispatcher.dispatch).toBeCalledWith({
+			source: constants.CHANGE_SUCCESS,
+			todo: data
+		});
 	});	
 });

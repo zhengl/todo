@@ -18,6 +18,12 @@ export default {
 	remove: (todo) => {
 		axios
 			.delete(`${constants.BASE_URL}/todos/${todo.id}`)
-			.then((res) => TodoServerActions.handleRemoveSuccess(res.data));		
+			.then((res) => TodoServerActions.handleRemoveSuccess(res.data));
+	},
+
+	change: (todo) => {
+		axios
+			.put(`${constants.BASE_URL}/todos/${todo.id}`, { content: todo.content })
+			.then((res) => TodoServerActions.handleChangeSuccess(res.data));
 	}
 }

@@ -20,4 +20,13 @@ describe('TodoActions', () => {
 		TodoActions.remove(data);
 		expect(TodoDAO.remove).toBeCalledWith(data);
 	});
+
+	it('calls TodoDAO.change on change', () => {
+		let data = {
+			id: '0001',
+			content: 'new content'
+		};
+		TodoActions.change(data);
+		expect(TodoDAO.change).toBeCalledWith(data);
+	});	
 });

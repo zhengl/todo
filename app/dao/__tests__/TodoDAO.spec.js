@@ -22,16 +22,14 @@ describe('TodoDAO', () => {
 		];
 		request.mockResponse(data);
 		TodoDAO.fetchAll();
-		expect(TodoServerActions.handleFetchAllSuccess).toBeCalled();
-		expect(TodoServerActions.handleFetchAllSuccess.mock.calls[0][0]).toBe(data);
+		expect(TodoServerActions.handleFetchAllSuccess).toBeCalledWith(data);
 	});
 
 	it('#add', () => {
 		const data = 'new item';
 		request.mockResponse(data);
 		TodoDAO.add(data);
-		expect(TodoServerActions.handleAddSuccess).toBeCalled();
-		expect(TodoServerActions.handleAddSuccess.mock.calls[0][0]).toBe(data);
+		expect(TodoServerActions.handleAddSuccess).toBeCalledWith(data);
 	});
 
 	it('#remove', () => {
@@ -43,7 +41,18 @@ describe('TodoDAO', () => {
 
 		request.mockResponse(mockedResponse);
 		TodoDAO.remove(data);
-		expect(TodoServerActions.handleRemoveSuccess).toBeCalled();
-		expect(TodoServerActions.handleRemoveSuccess.mock.calls[0][0]).toBe(mockedResponse);
+		expect(TodoServerActions.handleRemoveSuccess).toBeCalledWith(mockedResponse);
 	});	
+
+	it('#remove', () => {
+		const mockedResponse = {
+			id: '0001',
+			content: 'new content'
+		};
+		const data = mockedResponse;
+
+		request.mockResponse(mockedResponse);
+		TodoDAO.change(data);
+		expect(TodoServerActions.handleChangeSuccess).toBeCalledWith(mockedResponse);
+	});		
 });

@@ -81,4 +81,26 @@ describe('TodoStore', () => {
 		expect(TodoStore.getTodos()).toBe(data);
 		expect(TodoStore.emitChange).toBeCalled();
 	});
+
+	it('sets todo content on CHANGE_SUCCESS', () => {
+		TodoStore.setTodos([
+			{
+				id: '0001',
+				content: 'Item 1'
+			}
+		]);
+
+		TodoStore.emitChange = jest.genMockFn();
+
+		const updatedTodo = {
+				id: '0001',
+				content: 'new content'
+		};
+		dispatch({
+			source: constants.CHANGE_SUCCESS,
+			todo: updatedTodo
+		});
+
+		expect(TodoStore.getTodos().find(todo => todo.id == updatedTodo.id).content).toBe(updatedTodo.content);
+	});	
 });

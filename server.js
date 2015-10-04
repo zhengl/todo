@@ -70,6 +70,12 @@ restfulServer.delete('/todos/:id', (req, res) => {
 	res.json(database.todos);
 });
 
+restfulServer.put('/todos/:id', (req, res) => {
+	const todo = database.todos.find(todo => todo.id == req.params.id);
+	todo.content = req.body.content;
+	res.json(todo);
+});
+
 restfulServer.listen(REST_PORT, () => {
 	console.log(`Restful Server is now running on http://localhost:${REST_PORT}`);
 });
