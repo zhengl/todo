@@ -48,8 +48,10 @@ describe('Todo', () => {
 
 		let newContent = 'new content';
 		const inputComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit__input');
-		ReactDOM.findDOMNode(inputComponent).value = newContent;
-		
+		const input = ReactDOM.findDOMNode(inputComponent);
+		input.value = newContent;
+		TestUtils.Simulate.change(input);
+
 		const formComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit');
 		TestUtils.Simulate.submit(ReactDOM.findDOMNode(formComponent));
 		expect(TodoActions.change).toBeCalledWith({
@@ -59,5 +61,19 @@ describe('Todo', () => {
 
 		const todoEdits = TestUtils.scryRenderedDOMComponentsWithClass(todo, 'todo__edit');
 		expect(todoEdits.length).toBe(0);
+	});
+
+	it('resumes content on clicking backdrop', () => {
+		TestUtils.Simulate.doubleClick(ReactDOM.findDOMNode(todo));
+
+		let newContent = 'new content';
+		const inputComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit__input');
+		ReactDOM.findDOMNode(inputComponent).value = newContent;
+		TestUtils.Simulate.change(ReactDOM.findDOMNode(inputComponent));
+
+		const backdropComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__backdrop');
+		TestUtils.Simulate.click(ReactDOM.findDOMNode(backdropComponent));
+		const item = TestUtils.findRenderedDOMComponentWithTag(todo, 'li');
+		expect(ReactDOM.findDOMNode(item).textContent).toMatch(data.content);
 	});
 });

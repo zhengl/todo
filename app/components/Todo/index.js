@@ -10,8 +10,9 @@ export default class Todo extends React.Component {
 		super(props);
 		this.state = {
 			content: props.todo.content,
-			isEditing: false
+			isEditing: false,
 		};
+		this.previousContent = props.todo.content;
 	}
 
 	render() {
@@ -20,8 +21,9 @@ export default class Todo extends React.Component {
 		if(this.state.isEditing) {
 			return (
 				<li className="todo">
+					<div className="todo__backdrop" onClick={ this.changeToNormalMode }></div>
 					<form className="todo__edit" onSubmit={ this.handleChange }>
-						<input className="todo__edit__input" value={ content } onChange={ this.onChangeContent } />
+						<input className="todo__edit__input" value={ content } onChange={ this.onChangeContent } ref="input" />
 						<button className="todo__edit__confirm" type="submit" dangerouslySetInnerHTML={{__html: confirmIcon}}></button>
 					</form>
 				</li>
@@ -33,6 +35,13 @@ export default class Todo extends React.Component {
 					<button className="todo__remove" onClick={ this.handleRemove }  dangerouslySetInnerHTML={{__html: removeIcon}}></button>
 				</li>
 			);
+		}
+	}
+
+	componentDidUpdate() {
+		if(this.state.isEditing) {
+			this.refs.input.focus();
+			this.refs.input.value = this.refs.input.value;
 		}
 	}
 
@@ -58,8 +67,16 @@ export default class Todo extends React.Component {
 	}
 
 	changeToEditMode = () => {
+		this.previousContent = this.state.content;
 		this.setState({
 			isEditing: true
 		});
+	}
+
+	changeToNormalMode = () => {
+		this.setState({
+			content: this.previousContent,
+			isEditing: false
+		});		
 	}
 }
