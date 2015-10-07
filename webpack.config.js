@@ -8,8 +8,8 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{ test: /\.js$/, exclude: /node_modules/, loader: 'babel', query: { stage: 0 } },
-			{ test: /\.js$/, exclude: /node_modules/, loader: 'eslint'},
+			{ test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel', query: { stage: 0 } },
+			{ test: /\.jsx?$/, exclude: /node_modules/, loader: 'eslint'},
 			{ test: /\.css$/, loader: 'style!css'},
 			{ test: /\.svg$/, loader: 'raw'},
 		]

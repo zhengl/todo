@@ -6,77 +6,82 @@ import removeIcon from 'material-design-icons/content/svg/production/ic_clear_24
 import confirmIcon from 'material-design-icons/action/svg/production/ic_done_24px.svg';
 
 export default class Todo extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			content: props.todo.content,
-			isEditing: false,
-		};
-		this.previousContent = props.todo.content;
-	}
+  static propTypes = {
+    todo: React.PropTypes.shape({
+      id: React.PropTypes.string,
+    }),
+  };
 
-	render() {
-		let { id } = this.props.todo;
-		let { content } = this.state;
-		if(this.state.isEditing) {
-			return (
-				<li className="todo">
-					<div className="todo__backdrop" onClick={ this.changeToNormalMode }></div>
-					<form className="todo__edit" onSubmit={ this.handleChange }>
-						<input className="todo__edit__input" value={ content } onChange={ this.onChangeContent } ref="input" />
-						<button className="todo__edit__confirm" type="submit" dangerouslySetInnerHTML={{__html: confirmIcon}}></button>
-					</form>
-				</li>
-			);
-		} else {
-			return (
-				<li className="todo" onDoubleClick={ this.changeToEditMode }>
-					<span className="todo__content">{ content }</span>
-					<button className="todo__remove" onClick={ this.handleRemove }  dangerouslySetInnerHTML={{__html: removeIcon}}></button>
-				</li>
-			);
-		}
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: props.todo.content,
+      isEditing: false,
+    };
+    this.previousContent = props.todo.content;
+  }
 
-	componentDidUpdate() {
-		if(this.state.isEditing) {
-			this.refs.input.focus();
-			this.refs.input.value = this.refs.input.value;
-		}
-	}
+  componentDidUpdate() {
+    if (this.state.isEditing) {
+      this.refs.input.focus();
+      this.refs.input.value = this.refs.input.value;
+    }
+  }
 
-	handleRemove = () => {
-		TodoActions.remove(this.props.todo);
-	}
+  onChangeContent = (event) => {
+    this.setState({
+      content: event.target.value,
+    });
+  }
 
-	handleChange = (e) => {
-		e.preventDefault();
-		TodoActions.change({
-			id: this.props.todo.id,
-			content: this.state.content
-		});
-		this.setState({
-			isEditing: false
-		});
-	}
+  handleChange = (event) => {
+    event.preventDefault();
+    TodoActions.change({
+      id: this.props.todo.id,
+      content: this.state.content,
+    });
+    this.setState({
+      isEditing: false,
+    });
+  }
 
-	onChangeContent = (e) => {
-		this.setState({
-			content: e.target.value
-		});
-	}
+  handleRemove = () => {
+    TodoActions.remove(this.props.todo);
+  }
 
-	changeToEditMode = () => {
-		this.previousContent = this.state.content;
-		this.setState({
-			isEditing: true
-		});
-	}
+  changeToEditMode = () => {
+    this.previousContent = this.state.content;
+    this.setState({
+      isEditing: true,
+    });
+  }
 
-	changeToNormalMode = () => {
-		this.setState({
-			content: this.previousContent,
-			isEditing: false
-		});		
-	}
+  changeToNormalMode = () => {
+    this.setState({
+      content: this.previousContent,
+      isEditing: false,
+    });
+  }
+
+  render() {
+    const { content } = this.state;
+    if (this.state.isEditing) {
+      return (
+        <li className="todo">
+          <div className="todo__backdrop" onClick={ this.changeToNormalMode }></div>
+          <form className="todo__edit" onSubmit={ this.handleChange }>
+            <input className="todo__edit__input" value={ content } onChange={ this.onChangeContent } ref="input" />
+            <button className="todo__edit__confirm" type="submit" dangerouslySetInnerHTML={{__html: confirmIcon}}></button>
+          </form>
+        </li>
+      );
+    }
+
+    return (
+      <li className="todo" onDoubleClick={ this.changeToEditMode }>
+        <span className="todo__content">{ content }</span>
+        <button className="todo__remove" onClick={ this.handleRemove } dangerouslySetInnerHTML={{__html: removeIcon}}></button>
+      </li>
+    );
+  }
 }

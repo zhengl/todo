@@ -2,31 +2,31 @@ import AppDispatcher from '../dispatcher/AppDispatcher';
 import constants from '../constants';
 
 export default {
-	handleFetchAllSuccess: (todos) => {
-		AppDispatcher.dispatch({
-			source: constants.FETCH_ALL_SUCCESS,
-			todos: todos
-		});
-	},
+  handleFetchAllSuccess: (todos) => {
+    AppDispatcher.dispatch({
+      source: constants.FETCH_ALL_SUCCESS,
+      todos: todos,
+    });
+  },
 
-	handleAddSuccess: (todo) => {
-		AppDispatcher.dispatch({
-			source: constants.ADD_SUCCESS,
-			todo: todo
-		})		
-	},
+  handleAddSuccess: (todo) => {
+    AppDispatcher.dispatch({
+      source: constants.ADD_SUCCESS,
+      todo: todo,
+    });
+  },
 
-	handleRemoveSuccess: (todos) => {
-		AppDispatcher.dispatch({
-			source: constants.REMOVE_SUCCESS,
-			todos: todos
-		});
-	},
+  handleRemoveSuccess: (todos) => {
+    AppDispatcher.dispatch({
+      source: constants.REMOVE_SUCCESS,
+      todos: todos,
+    });
+  },
 
-	handleChangeSuccess: (todo) => {
-		AppDispatcher.dispatch({
-			source: constants.CHANGE_SUCCESS,
-			todo: todo
-		});
-	}
-}
+  handleChangeSuccess: (todo) => {
+    AppDispatcher.dispatch({
+      source: constants.CHANGE_SUCCESS,
+      todo: todo,
+    });
+  },
+};

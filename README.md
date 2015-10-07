@@ -7,6 +7,18 @@ A showcase of building Todo with React, Flux, Jest, Webpack Material Design, etc
 npm install
 ```
 
+## Testing
+
+```
+npm test
+```
+
+## Linting
+
+```
+npm run lint
+```
+
 ## Running
 
 Start a local server:
@@ -15,10 +27,12 @@ Start a local server:
 npm start
 ```
 
-## Developing
+You may find the Todo application at http://localhost:8080.
 
 Any changes you make to files in the `app/` directory will cause the server to
-automatically rebuild the app and refresh your browser.
+automatically rebuild the app.
+
+## Developing
 
 ```
 npm run watch

@@ -1,32 +1,32 @@
 jest.dontMock('../TodoActions');
 
-const TodoDAO = require('../../dao/TodoDAO');
+const TodoDao = require('../../dao/TodoDao');
 const TodoActions = require('../TodoActions');
 
 describe('TodoActions', () => {
-	it('calls TodoDAO.fetchAll on fetchAll', () => {
-		TodoActions.fetchAll();
-		expect(TodoDAO.fetchAll).toBeCalled();
-	});
+  it('calls TodoDao.fetchAll on fetchAll', () => {
+    TodoActions.fetchAll();
+    expect(TodoDao.fetchAll).toBeCalled();
+  });
 
-	it('calls TodoDAO.add on add', () => {
-		let data = 'new item';
-		TodoActions.add(data);
-		expect(TodoDAO.add).toBeCalledWith(data);
-	});
+  it('calls TodoDao.add on add', () => {
+    const data = 'new item';
+    TodoActions.add(data);
+    expect(TodoDao.add).toBeCalledWith(data);
+  });
 
-	it('calls TodoDAO.remove on remove', () => {
-		let data = 'new item';
-		TodoActions.remove(data);
-		expect(TodoDAO.remove).toBeCalledWith(data);
-	});
+  it('calls TodoDao.remove on remove', () => {
+    const data = 'new item';
+    TodoActions.remove(data);
+    expect(TodoDao.remove).toBeCalledWith(data);
+  });
 
-	it('calls TodoDAO.change on change', () => {
-		let data = {
-			id: '0001',
-			content: 'new content'
-		};
-		TodoActions.change(data);
-		expect(TodoDAO.change).toBeCalledWith(data);
-	});	
+  it('calls TodoDao.change on change', () => {
+    const data = {
+      id: '0001',
+      content: 'new content',
+    };
+    TodoActions.change(data);
+    expect(TodoDao.change).toBeCalledWith(data);
+  });
 });
