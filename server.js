@@ -21,6 +21,7 @@ const database = {
 const REST_PORT = 3000;
 const APP_PORT = 8080;
 
+webpackConfig.entry.unshift(`webpack-dev-server/client?http://localhost:${APP_PORT}`, 'webpack/hot/dev-server');
 const compiler = webpack(webpackConfig);
 
 const app = new WebpackDevServer(compiler, {
