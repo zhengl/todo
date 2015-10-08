@@ -1,6 +1,8 @@
 # Todo
 A showcase of building Todo with React, Flux, Jest, Webpack Material Design, etc
 
+[![Build Status](https://travis-ci.org/zhengl/todo.svg?branch=master)](https://travis-ci.org/zhengl/todo)
+
 ## Installation
 
 ```
