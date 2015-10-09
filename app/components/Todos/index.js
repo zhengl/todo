@@ -6,9 +6,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './styles.css';
 
 export default class Todos extends Component {
-  static propTypes = {
-  };
-
   render() {
     return (
       <ul className="todos">

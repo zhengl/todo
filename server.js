@@ -18,7 +18,7 @@ const database = {
   ],
 };
 
-const REST_PORT = 3000;
+const SERVER_PORT = 3000;
 const APP_PORT = 8080;
 
 webpackConfig.entry.unshift(`webpack-dev-server/client?http://localhost:${APP_PORT}`, 'webpack/hot/dev-server');
@@ -75,7 +75,7 @@ server.put('/todos/:id', (req, res) => {
   res.json(targetTodo);
 });
 
-server.listen(REST_PORT, () => {
+server.listen(SERVER_PORT, () => {
 /* eslint-disable no-console */
-  console.log(`Restful Server is now running on http://localhost:${REST_PORT}`);
+  console.log(`Server is now running on http://localhost:${SERVER_PORT}`);
 });
