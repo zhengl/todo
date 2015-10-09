@@ -1,24 +1,18 @@
-import React from 'react';
-import TodoActions from '../../actions/TodoActions';
+import React, { Component, PropTypes } from 'react';
 
 import './styles.css';
 import removeIcon from 'material-design-icons/content/svg/production/ic_clear_24px.svg';
 import confirmIcon from 'material-design-icons/action/svg/production/ic_done_24px.svg';
 
-export default class Todo extends React.Component {
-  static propTypes = {
-    todo: React.PropTypes.shape({
-      id: React.PropTypes.string,
-    }),
-  };
-
+export default class Todo extends Component {
   constructor(props) {
     super(props);
+    const { content } = this.props;
     this.state = {
-      content: props.todo.content,
+      content: content,
       isEditing: false,
     };
-    this.previousContent = props.todo.content;
+    this.previousContent = content;
   }
 
   componentDidUpdate() {
@@ -36,8 +30,8 @@ export default class Todo extends React.Component {
 
   handleChange = (event) => {
     event.preventDefault();
-    TodoActions.change({
-      id: this.props.todo.id,
+    this.props.onUpdate({
+      id: this.props.id,
       content: this.state.content,
     });
     this.setState({
@@ -46,7 +40,7 @@ export default class Todo extends React.Component {
   }
 
   handleRemove = () => {
-    TodoActions.remove(this.props.todo);
+    this.props.onDelete({ id: this.props.id });
   }
 
   changeToEditMode = () => {
@@ -85,3 +79,10 @@ export default class Todo extends React.Component {
     );
   }
 }
+
+Todo.propTypes = {
+  id: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+};

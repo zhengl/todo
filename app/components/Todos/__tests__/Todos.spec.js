@@ -24,7 +24,7 @@ describe('Todos', () => {
       },
     ];
     const todos = TestUtils.renderIntoDocument(
-      <Todos todos={data} />
+      <Todos todos={data} onTodoDelete={ jest.genMockFn() } onTodoUpdate={ jest.genMockFn() } />
     );
 
     const items = TestUtils.scryRenderedComponentsWithType(todos, Todo);

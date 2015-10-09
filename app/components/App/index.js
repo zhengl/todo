@@ -69,7 +69,7 @@ export default class App extends React.Component {
             <input className="main__new-todo-container__input" ref="newTodoContent" placeholder="New Todo" />
             <button className="main__new-todo-container__confirm" type="submit" dangerouslySetInnerHTML={{__html: confirmIcon}}></button>
           </form>
-          <Todos todos={ this.state.todos } />
+          <Todos todos={ this.state.todos } onTodoDelete={ TodoActions.remove } onTodoUpdate={ TodoActions.change } />
           <button className={addTodoButtonClass} onClick={this.toggleMode} dangerouslySetInnerHTML={{__html: addIcon}}></button>
         </main>
       </div>

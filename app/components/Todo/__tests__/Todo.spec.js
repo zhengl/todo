@@ -5,19 +5,22 @@ import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 
 const Todo = require('../');
-const TodoActions = require('../../../actions/TodoActions');
 
 describe('Todo', () => {
   let data;
   let todo;
+  let onUpdate;
+  let onDelete;
 
   beforeEach(() => {
     data = {
       id: '0001',
       content: 'testContent',
     };
+    onDelete = jest.genMockFn();
+    onUpdate = jest.genMockFn();
     todo = TestUtils.renderIntoDocument(
-      <Todo todo={data} />
+      <Todo {...data} onDelete={onDelete} onUpdate={onUpdate} />
     );
   });
 
@@ -29,7 +32,7 @@ describe('Todo', () => {
   it('calls TodoActions.delete the on clicking remove-todo button', () => {
     const removeTodoButton = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__remove');
     TestUtils.Simulate.click(ReactDOM.findDOMNode(removeTodoButton));
-    expect(TodoActions.remove).toBeCalledWith(data);
+    expect(onDelete).toBeCalledWith({ id: data.id });
   });
 
   it('shows edit input on double click', () => {
@@ -54,7 +57,7 @@ describe('Todo', () => {
 
     const formComponent = TestUtils.findRenderedDOMComponentWithClass(todo, 'todo__edit');
     TestUtils.Simulate.submit(ReactDOM.findDOMNode(formComponent));
-    expect(TodoActions.change).toBeCalledWith({
+    expect(onUpdate).toBeCalledWith({
       id: data.id,
       content: newContent,
     });
