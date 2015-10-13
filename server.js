@@ -31,7 +31,7 @@ const app = new WebpackDevServer(compiler, {
   inline: true,
   stats: {colors: true},
   proxy: {
-    '/todos': `http://localhost:${SERVER_PORT}`,
+    '/todos*': `http://localhost:${SERVER_PORT}`,
   },
 });
 
